@@ -3,3 +3,5 @@ dist
 .code-tour
 coverage
 test/tmp
+docs
+
