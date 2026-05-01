@@ -1,0 +1,30 @@
+{
+  "name": "code-tour",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "code-tour": "./dist/cli/main.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli/main.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/cli/main.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "better-sqlite3": "latest",
+    "commander": "latest",
+    "fast-glob": "latest",
+    "openai": "latest",
+    "ts-morph": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "latest",
+    "@types/node": "latest",
+    "tsx": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}

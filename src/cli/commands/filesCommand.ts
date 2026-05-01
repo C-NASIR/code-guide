@@ -1,0 +1,16 @@
+import type { Command } from "commander";
+import { readIndexedFiles } from "../../storage/projectQueries.js";
+import { formatFileList } from "../formatters.js";
+import { resolveReadProjectRoot } from "../options.js";
+
+export function registerFilesCommand(program: Command): void {
+  program
+    .command("files")
+    .description("Show indexed files")
+    .option("--project <path>", "Indexed project root", process.cwd())
+    .action((options: { project: string }) => {
+      const projectRoot = resolveReadProjectRoot(options.project);
+      const files = readIndexedFiles(projectRoot);
+      console.log(formatFileList(files));
+    });
+}
