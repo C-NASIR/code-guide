@@ -19,6 +19,10 @@ function createExportRecord(
   };
 }
 
+/**
+ * Extracts named exports, default exports, and re-exports from a source file
+ * into a single normalized record shape.
+ */
 export function extractExports(sourceFile: SourceFile, filePath: string): ExportRecord[] {
   const records = new Map<string, ExportRecord>();
 

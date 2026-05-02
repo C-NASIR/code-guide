@@ -14,6 +14,13 @@ type IndexProjectOptions = {
   summaryModel: string;
 };
 
+/**
+ * Runs the full indexing pipeline for a target project and returns the
+ * aggregate counts shown by the CLI report.
+ *
+ * The pipeline scans files, parses structural facts, generates best-effort
+ * summaries, and replaces the project's persisted SQLite snapshot.
+ */
 export async function indexProject({
   projectPath,
   summarizeFile,

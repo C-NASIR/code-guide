@@ -12,6 +12,12 @@ export type ProgramDependencies = {
   indexCommand?: IndexCommandDependencies;
 };
 
+/**
+ * Creates the top-level Commander program and registers all Phase 1 commands.
+ *
+ * Dependencies are injectable so tests can replace the production summarizer
+ * with deterministic mocks.
+ */
 export function createProgram(dependencies: ProgramDependencies = {}): Command {
   const program = new Command();
 

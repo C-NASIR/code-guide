@@ -35,6 +35,10 @@ function getMethodFromOptions(optionsNode: ObjectLiteralExpression): string | nu
   return value ? value.toUpperCase() : null;
 }
 
+/**
+ * Extracts basic outbound API calls from direct `fetch(...)` and
+ * `axios.<method>(...)` expressions.
+ */
 export function extractApiCalls(sourceFile: SourceFile, filePath: string): ApiCallRecord[] {
   const apiCalls: ApiCallRecord[] = [];
 

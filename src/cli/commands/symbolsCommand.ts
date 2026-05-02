@@ -3,6 +3,10 @@ import { readIndexedSymbols } from "../../storage/projectQueries.js";
 import { formatSymbolList } from "../formatters.js";
 import { resolveReadProjectRoot } from "../options.js";
 
+/**
+ * Registers the `symbols` command for rendering functions, components, and
+ * routes from the stored snapshot.
+ */
 export function registerSymbolsCommand(program: Command): void {
   program
     .command("symbols")

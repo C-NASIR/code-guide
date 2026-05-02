@@ -3,6 +3,10 @@ import { readIndexedFiles } from "../../storage/projectQueries.js";
 import { formatFileList } from "../formatters.js";
 import { resolveReadProjectRoot } from "../options.js";
 
+/**
+ * Registers the `files` command for listing indexed file paths from the stored
+ * project snapshot.
+ */
 export function registerFilesCommand(program: Command): void {
   program
     .command("files")

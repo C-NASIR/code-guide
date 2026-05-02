@@ -18,6 +18,10 @@ function initializeDatabase(db: ProjectDatabase): void {
   }
 }
 
+/**
+ * Opens the writable SQLite database for a project and ensures the schema is
+ * initialized before new index data is written.
+ */
 export function openProjectDatabase(projectRoot: string): ProjectDatabase {
   const databasePath = getDatabasePath(projectRoot);
   fs.mkdirSync(path.dirname(databasePath), {
@@ -29,6 +33,12 @@ export function openProjectDatabase(projectRoot: string): ProjectDatabase {
   return db;
 }
 
+/**
+ * Opens an existing project index for read commands.
+ *
+ * This throws when the target project has not been indexed yet so the CLI can
+ * return a clear error instead of silently showing empty results.
+ */
 export function openIndexedProjectDatabase(projectRoot: string): ProjectDatabase {
   const databasePath = getDatabasePath(projectRoot);
 

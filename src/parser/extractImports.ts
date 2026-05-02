@@ -2,6 +2,10 @@ import type { SourceFile } from "ts-morph";
 import type { ImportRecord } from "../types/records.js";
 import { createId } from "../utils/createId.js";
 
+/**
+ * Extracts ES module import declarations with their module source, imported
+ * names, and line ranges.
+ */
 export function extractImports(sourceFile: SourceFile, filePath: string): ImportRecord[] {
   return sourceFile.getImportDeclarations().map((declaration) => {
     const importedNames: string[] = [];

@@ -7,6 +7,9 @@ import { listRoutes, listRoutesForFile } from "./routeRepository.js";
 import { getFileSummary } from "./summaryRepository.js";
 import { listSymbols, listSymbolsForFile } from "./symbolRepository.js";
 
+/**
+ * Returns all indexed file paths for a project from the persisted snapshot.
+ */
 export function readIndexedFiles(projectRoot: string): string[] {
   const db = openIndexedProjectDatabase(projectRoot);
 
@@ -17,6 +20,12 @@ export function readIndexedFiles(projectRoot: string): string[] {
   }
 }
 
+/**
+ * Returns the combined symbol view used by the `symbols` command.
+ *
+ * Functions and components are read from the symbols table, while routes are
+ * merged in from the dedicated routes table.
+ */
 export function readIndexedSymbols(projectRoot: string): Array<{
   name: string;
   kind: string;
@@ -45,6 +54,9 @@ export function readIndexedSymbols(projectRoot: string): Array<{
   }
 }
 
+/**
+ * Returns normalized import records for one indexed file.
+ */
 export function readImportsForFile(projectRoot: string, filePath: string): Array<{
   importedFrom: string;
   importedNames: string[];
@@ -62,6 +74,10 @@ export function readImportsForFile(projectRoot: string, filePath: string): Array
   }
 }
 
+/**
+ * Loads the full explanation payload for one indexed file, including metadata,
+ * extracted structural facts, and the stored summary when one exists.
+ */
 export function readExplainData(projectRoot: string, filePath: string): {
   file: {
     path: string;

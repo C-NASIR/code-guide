@@ -27,6 +27,13 @@ function getLanguageForExtension(filePath: string): SourceLanguage {
   return "js";
 }
 
+/**
+ * Scans a project directory for supported source files and returns normalized
+ * in-memory file records for downstream parsing and storage.
+ *
+ * Files that are unreadable, unsupported, or too large are skipped and counted
+ * rather than aborting the scan.
+ */
 export async function scanProject(projectPath: string): Promise<ScanProjectResult> {
   const projectRoot = resolveProjectRoot(projectPath);
   const stats = await fs.stat(projectRoot).catch(() => null);

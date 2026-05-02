@@ -10,6 +10,12 @@ import { insertRoutes } from "./routeRepository.js";
 import { insertFileSummaries } from "./summaryRepository.js";
 import { insertSymbols } from "./symbolRepository.js";
 
+/**
+ * Replaces the persisted SQLite snapshot for a project in a single
+ * transaction.
+ *
+ * This guarantees the database is either fully refreshed or left unchanged.
+ */
 export function replaceProjectIndex(
   db: ProjectDatabase,
   files: SourceFileRecord[],

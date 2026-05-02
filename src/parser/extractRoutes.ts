@@ -22,6 +22,10 @@ function getStringLiteralValue(node: Node | undefined): string | null {
   return null;
 }
 
+/**
+ * Extracts basic Express-style route declarations from `app.METHOD(...)` and
+ * `router.METHOD(...)` calls with string-literal paths.
+ */
 export function extractRoutes(sourceFile: SourceFile, filePath: string): RouteRecord[] {
   const routes: RouteRecord[] = [];
 

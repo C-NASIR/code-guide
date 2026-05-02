@@ -7,6 +7,10 @@ export type IndexCommandDependencies = {
   createSummarizer?: typeof createOpenAIFileSummarizer;
 };
 
+/**
+ * Registers the `index` command, which runs the full indexing pipeline and
+ * prints the aggregate report for the target project.
+ */
 export function registerIndexCommand(
   program: Command,
   dependencies: IndexCommandDependencies = {},

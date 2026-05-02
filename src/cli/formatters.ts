@@ -1,5 +1,8 @@
 import type { IndexingReport } from "../types/indexing.js";
 
+/**
+ * Formats the aggregate report printed after an indexing run.
+ */
 export function formatIndexReport(report: IndexingReport): string {
   return [
     `Indexed project: ${report.projectPath}`,
@@ -45,6 +48,9 @@ export function formatImports(
     .join("\n");
 }
 
+/**
+ * Formats the full file explanation payload for the `explain` command.
+ */
 export function formatExplain(data: {
   file: {
     path: string;

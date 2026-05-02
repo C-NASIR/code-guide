@@ -3,6 +3,10 @@ import { readExplainData } from "../../storage/projectQueries.js";
 import { formatExplain } from "../formatters.js";
 import { resolveReadProjectRoot } from "../options.js";
 
+/**
+ * Registers the `explain` command for showing the stored summary and extracted
+ * facts for one indexed file.
+ */
 export function registerExplainCommand(program: Command): void {
   program
     .command("explain")

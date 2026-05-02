@@ -3,6 +3,10 @@ import { readImportsForFile } from "../../storage/projectQueries.js";
 import { formatImports } from "../formatters.js";
 import { resolveReadProjectRoot } from "../options.js";
 
+/**
+ * Registers the `imports` command for inspecting the imports of one indexed
+ * file.
+ */
 export function registerImportsCommand(program: Command): void {
   program
     .command("imports")

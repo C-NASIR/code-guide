@@ -8,6 +8,10 @@ type SummaryEnv = {
   OPENAI_MODEL: string;
 };
 
+/**
+ * Validates the environment required to generate file summaries during
+ * indexing.
+ */
 export function getSummaryEnv(env: NodeJS.ProcessEnv = process.env): SummaryEnv {
   const apiKey = env.OPENAI_API_KEY?.trim();
   const model = env.OPENAI_MODEL?.trim();
@@ -26,6 +30,12 @@ export function getSummaryEnv(env: NodeJS.ProcessEnv = process.env): SummaryEnv 
   };
 }
 
+/**
+ * Creates the OpenAI-backed summarizer used by the `index` command.
+ *
+ * The returned summarizer enforces the shared Zod schema so summaries can be
+ * stored and displayed without extra parsing logic elsewhere in the codebase.
+ */
 export function createOpenAIFileSummarizer(env: NodeJS.ProcessEnv = process.env): {
   model: string;
   summarizeFile: FileSummarizer;

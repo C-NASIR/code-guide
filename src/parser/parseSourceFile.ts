@@ -42,6 +42,13 @@ function hasParseErrors(sourceFile: SourceFile): boolean {
   return (compilerNode.parseDiagnostics?.length ?? 0) > 0;
 }
 
+/**
+ * Parses one source file into the normalized structural records stored by the
+ * index.
+ *
+ * Files with parse diagnostics return `null` so the indexer can skip them
+ * without failing the rest of the run.
+ */
 export function parseSourceFile(project: Project, file: SourceFileRecord): ParsedFile | null {
   const sourceFile = project.createSourceFile(file.path, file.content, {
     overwrite: true,

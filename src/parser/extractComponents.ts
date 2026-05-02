@@ -37,6 +37,10 @@ function returnsJsx(node: FunctionDeclaration | ArrowFunction | FunctionExpressi
   );
 }
 
+/**
+ * Detects React component definitions using a simple Phase 1 heuristic:
+ * PascalCase names that return JSX or call `React.createElement`.
+ */
 export function extractComponents(sourceFile: SourceFile, filePath: string): ComponentRecord[] {
   const records = new Map<string, ComponentRecord>();
 

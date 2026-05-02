@@ -6,6 +6,13 @@ function isNamedFunctionInitializer(node: Node | undefined): boolean {
   return Boolean(node && (Node.isArrowFunction(node) || Node.isFunctionExpression(node)));
 }
 
+/**
+ * Extracts named functions from declarations and variable-assigned function
+ * expressions.
+ *
+ * Anonymous callbacks are ignored, and React components are classified by the
+ * dedicated component extractor instead.
+ */
 export function extractFunctions(sourceFile: SourceFile, filePath: string): FunctionRecord[] {
   const records = new Map<string, FunctionRecord>();
 
