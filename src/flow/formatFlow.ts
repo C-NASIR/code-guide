@@ -1,5 +1,9 @@
 import type { RouteFlow } from "./flowTypes.js";
 
+/**
+ * Formats the deterministic route trace into the CLI text layout used by the
+ * `trace` command.
+ */
 export function formatFlow(flow: RouteFlow): string {
   const lines: string[] = [`Trace: ${flow.method} ${flow.path}`];
 

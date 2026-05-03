@@ -38,6 +38,10 @@ function classifyNodeStep(filePath: string | null): RouteFlowStepKind {
   return "function_call";
 }
 
+/**
+ * Reconstructs the selected mount chain for a routed file so mount-level
+ * middleware can be emitted before route-local handlers in the trace.
+ */
 function buildMountLineage(filePath: string, mountsByRouterFile: Map<string, ExpressMountRecord[]>): ExpressMountRecord[] {
   const lineage: ExpressMountRecord[] = [];
   const visited = new Set<string>();
@@ -75,6 +79,10 @@ function createHandlerStep(order: number, kind: RouteFlowStepKind, handler: Rout
   };
 }
 
+/**
+ * Traces one normalized route pattern from its Express entry point through
+ * local middleware, handler, and bounded call-graph expansion.
+ */
 export function traceRouteFlow(
   indexData: TraceIndexData,
   method: string,

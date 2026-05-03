@@ -2,6 +2,12 @@ import OpenAI from "openai";
 import { getSummaryEnv } from "./openaiClient.js";
 import type { RouteFlow } from "../flow/flowTypes.js";
 
+/**
+ * Creates the optional AI explainer for `trace --explain`.
+ *
+ * The explainer receives only the deterministic `RouteFlow` payload so the
+ * model cannot rely on unstored source context.
+ */
 export function createOpenAIRouteFlowExplainer(
   env: NodeJS.ProcessEnv = process.env
 ): {

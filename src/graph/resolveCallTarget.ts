@@ -67,6 +67,10 @@ function collectImportBindings(parsedFile: ParsedFile, projectFiles: Set<string>
   return bindings;
 }
 
+/**
+ * Precomputes the lookup tables used by call-target resolution so edge
+ * extraction can resolve local identifiers without repeated graph scans.
+ */
 export function createResolutionContext(parsedFiles: ParsedFile[], nodes: CallGraphNode[]): ResolutionContext {
   const projectFiles = new Set(parsedFiles.map((file) => file.filePath));
   const parsedFilesByPath = new Map(parsedFiles.map((file) => [file.filePath, file]));
@@ -241,6 +245,11 @@ function resolvePropertyAccess(
   };
 }
 
+/**
+ * Resolves a textual callable reference such as `listUsers` or
+ * `usersRepo.list` using the same conservative rules as AST-based call
+ * extraction.
+ */
 export function resolveCallableReference(
   context: ResolutionContext,
   sourceFilePath: string,
@@ -253,6 +262,11 @@ export function resolveCallableReference(
   return resolveIdentifier(context, sourceFilePath, referenceText);
 }
 
+/**
+ * Resolves one call expression target to a local graph node when the codebase
+ * evidence is strong enough, otherwise returning an unresolved or external
+ * classification instead of guessing.
+ */
 export function resolveCallTarget(
   context: ResolutionContext,
   sourceFilePath: string,

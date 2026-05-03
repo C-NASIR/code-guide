@@ -58,6 +58,10 @@ function createHandlerRef(
   };
 }
 
+/**
+ * Extracts Express route registrations from one file and preserves the
+ * ordered handler chain exactly as declared at the call site.
+ */
 export function extractExpressRoutes(sourceFile: SourceFile, filePath: string, targets: Set<string>): RouteRecord[] {
   const routes: RouteRecord[] = [];
 

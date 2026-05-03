@@ -9,6 +9,10 @@ export type TraceCommandDependencies = {
   createExplainer?: typeof createOpenAIRouteFlowExplainer;
 };
 
+/**
+ * Registers the `trace` command for deterministic mounted-route flow tracing
+ * with an optional AI explanation step layered on top.
+ */
 export function registerTraceCommand(program: Command, dependencies: TraceCommandDependencies = {}): void {
   const createExplainer = dependencies.createExplainer ?? createOpenAIRouteFlowExplainer;
 

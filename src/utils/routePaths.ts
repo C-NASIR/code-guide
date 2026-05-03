@@ -1,3 +1,7 @@
+/**
+ * Normalizes stored route patterns to the canonical Phase 2 style:
+ * leading slash, collapsed separators, and no trailing slash except `/`.
+ */
 export function normalizeRoutePath(path: string): string {
   const trimmed = path.trim();
 
@@ -15,6 +19,10 @@ export function normalizeRoutePath(path: string): string {
   return collapsed;
 }
 
+/**
+ * Joins a mount prefix and child route pattern while preserving the canonical
+ * normalization rules used for route matching.
+ */
 export function joinRoutePaths(basePath: string, childPath: string): string {
   if (basePath === "/") {
     return normalizeRoutePath(childPath);

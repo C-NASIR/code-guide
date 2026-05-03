@@ -1,5 +1,9 @@
 import { Node, type SourceFile } from "ts-morph";
 
+/**
+ * Finds the local identifiers that behave as Express app or router instances
+ * so downstream extraction only inspects relevant call sites.
+ */
 export function collectExpressTargets(sourceFile: SourceFile): Set<string> {
   const targets = new Set<string>(["app", "router"]);
 

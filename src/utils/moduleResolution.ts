@@ -3,6 +3,10 @@ import { normalizeProjectPath } from "./pathUtils.js";
 
 const FILE_EXTENSIONS = [".ts", ".tsx", ".mts", ".cts", ".js", ".jsx", ".mjs", ".cjs"] as const;
 
+/**
+ * Resolves a relative import specifier to one indexed project file using the
+ * Node/TypeScript extension patterns supported by the parser.
+ */
 export function resolveRelativeModulePath(
   fromFilePath: string,
   importedFrom: string,

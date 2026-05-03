@@ -55,6 +55,10 @@ function createMountMiddlewareRef(
   };
 }
 
+/**
+ * Extracts `app.use(...)` and `router.use(...)` registrations as both generic
+ * middleware records and richer mount records used by mounted-path resolution.
+ */
 export function extractExpressMiddleware(
   sourceFile: SourceFile,
   filePath: string,

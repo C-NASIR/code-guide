@@ -95,6 +95,10 @@ function chooseBestConfidence(confidences: Confidence[]): Confidence {
   return "high";
 }
 
+/**
+ * Walks mount relationships upward to compute the canonical mounted prefix
+ * for one router file while stopping on cycles.
+ */
 function computeMountedPrefixes(
   filePath: string,
   mountsByRouterFile: Map<string, ExpressMountRecord[]>,
@@ -155,6 +159,10 @@ function chooseCanonicalPrefix(
   };
 }
 
+/**
+ * Resolves router mounts after file parsing so each stored route includes a
+ * mounted full path and confidence without reparsing source at read time.
+ */
 export function resolveExpressMounts(parsedFiles: ParsedFile[]): void {
   const projectFiles = new Set(parsedFiles.map((file) => file.filePath));
   const parsedFilesByPath = new Map(parsedFiles.map((file) => [file.filePath, file]));

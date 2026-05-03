@@ -84,6 +84,10 @@ function findInlineHandlerContainer(sourceFile: SourceFile, handler: RouteHandle
   );
 }
 
+/**
+ * Synthesizes graph nodes from reusable code units and inline route handlers
+ * so the tracer can start from route entry points and expand into local calls.
+ */
 function collectGraphNodes(parsedFile: ParsedFile): GraphNodeWithContainer[] {
   const graphNodes: GraphNodeWithContainer[] = [];
   const seenRangeKeys = new Set<string>();
@@ -193,6 +197,10 @@ function collectGraphNodes(parsedFile: ParsedFile): GraphNodeWithContainer[] {
   return graphNodes.sort((left, right) => left.node.startLine - right.node.startLine);
 }
 
+/**
+ * Builds outgoing edges for one graph node while ignoring calls nested inside
+ * child containers that belong to other graph nodes.
+ */
 function collectNodeEdges(
   sourceNode: GraphNodeWithContainer,
   containerSet: Set<MorphNode>,
@@ -240,6 +248,10 @@ function collectNodeEdges(
   return edges.sort((left, right) => left.evidenceLine - right.evidenceLine);
 }
 
+/**
+ * Builds the persisted local call graph after all files have been parsed and
+ * Express routes have been resolved.
+ */
 export function extractCallGraph(parsedFiles: ParsedFile[]): void {
   const graphNodesByFile = new Map<string, GraphNodeWithContainer[]>();
   const allNodes: CallGraphNode[] = [];

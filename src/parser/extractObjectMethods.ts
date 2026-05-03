@@ -6,6 +6,10 @@ function isFunctionLikeProperty(node: Node | undefined): boolean {
   return Boolean(node && (Node.isArrowFunction(node) || Node.isFunctionExpression(node)));
 }
 
+/**
+ * Extracts easy-to-resolve object-literal methods so property calls such as
+ * `usersRepo.list()` can participate in the call graph.
+ */
 export function extractObjectMethods(sourceFile: SourceFile, filePath: string): ObjectMethodRecord[] {
   const records = new Map<string, ObjectMethodRecord>();
 
